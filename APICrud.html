@@ -1,0 +1,50 @@
+<html>
+<head>
+<body>
+</body>
+<script>
+    fetch("https://ghibliapi.herokuapp.com/people")
+    .then((data)=> {
+        return data.json();
+    })
+   .then ((MyUserList)=>{
+      getDynamicTable(MyUserList)
+    });
+    function getDynamicTable(MyUserList) {
+       const tab = document.createElement('table')
+       const tabhead = document.createElement('thead')
+       const tableHeadRow = document.createElement('tr');
+       console.log(tab,tabHead,tabBody,tableHeadRow);
+
+       Object.keys(MyUserList).forEach(key)=> {
+           if(key === 'Source Code Managers') {
+              const theadcell =document.createElement('th')
+              const cellText = document.createTextNode(key);
+              theadcell.appendChild(cellText);
+              tableHeadRow.appendChild(theadcell)
+              console.log();
+           }else{
+              const theadcell =document.createElement('th')
+              const cellText = document.createTextNode(key);
+              theadcell.appendChild(cellText);
+              tableHeadRow.appendChild(theadcell);
+           }
+    });
+    
+         MyUserList.forEach((devBin) => {
+             const row = document.createElement('tr')
+             for (devData in devBin) {
+               const cell = document.createElement('td')
+               const cellText = document.createTextNode(devBin[devData]);
+               cell.appendChild(cellText);
+               row.appendChild(cell);
+           }
+          tab.appendChild(tableHeadRow);
+          tab.appendChild(tabBody);
+          tab.setAttribute('border" , "1")
+          document.querySelector('#table').inner.html = "",
+          document.querySelector('#table').appendChild(tab);
+     }    
+</script>
+</head>
+</html>
